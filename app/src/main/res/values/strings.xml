@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">HostelNetwork</string>
+    <string name="title_activity_login2">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="menu_news_str">Bảng tin</string>
+    <string name="menu_search_str">Tìm kiếm</string>
+    <string name="menu_notifications">Thông báo</string>
+    <string name="menu_personal_str">Cá nhân</string>
+    <string name="menu_account_str">Tài khoản</string>
+    <string name="menu_posted_str">Đã đăng</string>
+    <string name="menu_Appointment_str">Lịch hẹn</string>
+    <string name="menu_Wishlist_str">Đã lưu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="registerStr">Chưa có tài khoản? <u>Đăng kí</u></string>
+    <string name="loginStr">Đã có tài khoản? <u>Đăng nhập</u></string>
+    <string name="title_activity_home2">Home2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+
+    <string name="title_activity_appointment">AppointmentActivity</string>
+    <string name="title_activity_wishlist">WishlistActivity</string>
+    <string name="avatar_user">avatar user</string>
+</resources>

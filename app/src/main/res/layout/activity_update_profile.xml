@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".activity.UpdateProfileActivity">
+
+    <ImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/avatar"
+        android:padding="5dp"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/txtUploadAvatar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="Tải ảnh lên"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/phone_icon"
+            android:tint="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="3"
+            android:text="Họ và tên :"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="7"
+            android:text="Nguyễn Văn A"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:weightSum="10">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/email_icon_black"
+            android:tint="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="3"
+            android:text="Email :"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="7"
+            android:inputType="textEmailAddress"
+            android:text="giang123@gmail.com"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="center"
+            android:src="@drawable/location"
+            android:tint="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="3"
+            android:text="Địa chỉ :"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/edtAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="7"
+            android:text="230/10/155 Quang Trung,Q12, HCM"
+            android:textColor="@color/colorBlack"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnCompleteUpdateProfile"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="Hoàn tất"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
+        android:onClick="updateProfile"/>
+
+</LinearLayout>

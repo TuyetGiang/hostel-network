@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#3676F5</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorButton">#DCDFE5</color>
+    <color name="colorBlue">#00B5F0</color>
+    <color name="backgroud_post">#ECE9E9</color>
+    <color name="background">#EFEEEE</color>
+    <color name="heart_saved">#FF0000</color>
+    <color name="color_gray">#aaaaaa</color>
+</resources>

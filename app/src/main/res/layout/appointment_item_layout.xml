@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/item_border">
+
+
+    <ImageView
+        android:id="@+id/imgUserAppointment"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitXY"
+
+        android:background="@drawable/img_user_border"/>
+
+
+    <TextView
+        android:id="@+id/txtAppointmentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgUserAppointment"
+        android:text="Nguyên Hoàng Ngọc Minh"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/txtAppointmentPhoneTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số điện thoại: "
+        android:layout_toRightOf="@id/imgUserAppointment"
+        android:layout_below="@id/txtAppointmentName"/>
+
+    <TextView
+        android:id="@+id/txtAppointentPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtAppointmentName"
+        android:layout_toRightOf="@id/txtAppointmentPhoneTitle"
+        android:text="0123456789"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/txtAppointmentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtAppointentPhone"
+        android:layout_toRightOf="@id/imgUserAppointment"
+        android:inputType="number"
+        android:text="15/03/2019 14:30"
+        android:textColor="@color/colorAccent"
+
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtPostTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtAppointmentTime"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_toRightOf="@id/imgUserAppointment"
+        android:text="Kí túc xá cao cấp Quận 12"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtAppointmentStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostAddress"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@id/imgUserAppointment"
+        android:inputType="date"
+        android:text="Đang chờ"
+        android:textSize="14sp" />
+
+</RelativeLayout>

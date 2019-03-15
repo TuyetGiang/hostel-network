@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_newss"
+        android:title="@string/menu_news_str"
+        android:icon="@drawable/ic_home_black"
+        />
+    <item
+        android:id="@+id/menu_appointments"
+        android:title="@string/menu_Appointment_str"
+        android:icon="@drawable/ic_calendar_clock_black"
+        />
+
+    <item
+        android:id="@+id/menu_wishLists"
+        android:title="@string/menu_Wishlist_str"
+        android:icon="@drawable/ic_notifications_black" />
+
+    <item
+        android:id="@+id/menu_account"
+        android:title="@string/menu_account_str"
+        android:icon="@drawable/ic_account_black" />
+</menu>
