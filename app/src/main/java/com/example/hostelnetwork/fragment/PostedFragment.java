@@ -1,7 +1,9 @@
 package com.example.hostelnetwork.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,13 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.hostelnetwork.MyPostedAdapter;
-import com.example.hostelnetwork.PostDetailActivity;
-import com.example.hostelnetwork.PostListAdapter;
 import com.example.hostelnetwork.R;
+import com.example.hostelnetwork.activity.LoginActivity;
+import com.example.hostelnetwork.activity.PostDetailActivity;
+import com.example.hostelnetwork.adapter.MyPostedAdapter;
 import com.example.hostelnetwork.dto.PostDTO;
+import com.example.hostelnetwork.dto.UserDTO;
+import com.example.hostelnetwork.model.PostModel;
+import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,40 +40,34 @@ public class PostedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_posted, container, false);
-        List<PostDTO> listData = getListData();
-        final ListView listView = (ListView) view.findViewById(R.id.listView);
-        listView.setAdapter(new MyPostedAdapter(listData, getActivity()));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+        SharedPreferences accountPreferences = getActivity().getSharedPreferences("ACCOUNT", Context.MODE_PRIVATE);
+        if (accountPreferences == null || accountPreferences.getString("userInfor", null) == null) {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.putExtra("FRAGMENT_ID", R.id.menu_account);
+            startActivity(intent);
+        } else {
+            Gson gson = new Gson();
+            String json = accountPreferences.getString("userInfor", "");
+            UserDTO userDTO = gson.fromJson(json, UserDTO.class);
+
+            PostModel postModel = new PostModel();
+            List<PostDTO> listData = postModel.getAllCreatedPost(userDTO.getId());
+            final ListView listView = view.findViewById(R.id.listView);
+
+            listView.setAdapter(new MyPostedAdapter(listData, getActivity()));
+
+            listView.setOnItemClickListener((a, v, position, id) -> {
                 Object o = listView.getItemAtPosition(position);
                 PostDTO postDTO = (PostDTO) o;
 
                 Intent intent = new Intent(getActivity(), PostDetailActivity.class);
                 intent.putExtra("POST_DETAIL", postDTO.getId());
                 startActivity(intent);
-            }
-
-        });
-
+            });
+        }
         return view;
 
-    }
-
-    private List<PostDTO> getListData() {
-        List<PostDTO> list = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-            PostDTO post1 = new PostDTO();
-            post1.setImgName("https://i.imgur.com/5iRbsCR.jpg");
-            post1.setTypeStr("PHÒNG TRỌ");
-            post1.setTitle("Phòng trọ mới xây cao cấp");
-            post1.setPrice(1500000);
-            post1.setLocation("Quận 12, Hồ Chí Minh");
-            list.add(post1);
-        }
-        return list;
     }
 
 }

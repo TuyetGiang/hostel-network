@@ -1,9 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostDetailActivity">
+    android:padding="5dp"
+    tools:context=".activity.PostDetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:id="@+id/tagImagePost"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/imgPostSlider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/background">
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:orientation="horizontal" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tagTitlePost"
+            android:background="@color/backgroud_post" />
+
+        <RelativeLayout
+            android:id="@+id/tagTitlePost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagImagePost"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtTitlePostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTypePostDetail"
+                android:text="Kí túc xá Ngọc An"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtPricePostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitlePostDetail"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp"
+                android:text="1.500.000"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitlePostDetail"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/saved_layout_post_detail"
+                android:clickable="true"
+                android:onClick="savedPostDetail">
+
+                <TextView
+                    android:id="@+id/txtStatusSavedPostDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="Lưu tin"
+                    android:textColor="@color/color_gray" />
+
+                <ImageView
+                    android:id="@+id/imgHeartDetail"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/heart_icon"
+                    android:tint="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtTypePostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="KÍ TÚC XÁ"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tagUserPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagTitlePost"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgAvatarUserPostDetail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/avatar" />
+
+            <TextView
+                android:id="@+id/txtNameUserPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/imgAvatarUserPostDetail"
+                android:text="Nguyễn Văn A"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iconPhoneUserPostDetail"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/txtNameUserPostDetail"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/imgAvatarUserPostDetail"
+                android:src="@drawable/phone_icon"
+                android:tint="@color/icon_color" />
+
+            <TextView
+                android:id="@+id/txtPhonePostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtNameUserPostDetail"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iconPhoneUserPostDetail"
+                android:text="0123456789" />
+
+            <ImageView
+                android:id="@+id/iconLocationUserPostDetail"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/txtPhonePostDetail"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/imgAvatarUserPostDetail"
+                android:src="@drawable/location"
+                android:tint="@color/icon_color" />
+
+            <TextView
+                android:id="@+id/txtAddressPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPhonePostDetail"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/iconLocationUserPostDetail"
+                android:text="15A Tô Ký, Phường Tân Chánh hiệp, Quận 12" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tagUserPost"
+            android:background="@color/backgroud_post" />
+
+        <RelativeLayout
+            android:id="@+id/tagContentPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tagUserPost"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtDetailTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Chi tiết: "
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtNotePostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDetailTitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Nội dung ghi chú của chủ nhà"
+                android:textColor="@color/colorBlack" />
+
+            <ImageView
+                android:id="@+id/iconAreaPostDetail"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/txtNotePostDetail"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/area_icon"
+                android:tint="@color/icon_color"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/txtAreaTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNotePostDetail"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iconAreaPostDetail"
+                android:text="Diện tích:    "
+                android:textColor="@color/colorBlack"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/txtAreaPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNotePostDetail"
+                android:layout_toRightOf="@+id/txtAreaTitle"
+                android:text="0 m2"
+                android:textColor="@color/colorBlack"
+                android:layout_marginBottom="5dp"/>
+
+            <ImageView
+                android:id="@+id/iconDepositPostDetail"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/txtAreaPostDetail"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/cash_icon"
+                android:tint="@color/icon_color"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/txtdepositTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAreaTitle"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iconDepositPostDetail"
+                android:text="Tiền cọc:    "
+                android:textColor="@color/colorBlack"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/txtDepositPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAreaPostDetail"
+                android:layout_toRightOf="@+id/txtAreaTitle"
+                android:text="0"
+                android:textColor="@color/colorBlack"
+                android:layout_marginBottom="5dp"/>
+
+            <ImageView
+                android:id="@+id/iconLocationPostDetail"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/txtDepositPostDetail"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/location"
+                android:tint="@color/icon_color" />
+
+            <TextView
+                android:id="@+id/txtLocationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtdepositTitle"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iconLocationPostDetail"
+                android:text="Địa chỉ:    "
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/txtLocationPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtdepositTitle"
+                android:layout_toRightOf="@+id/txtLocationTitle"
+                android:textColor="@color/colorBlack" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tagContentPost"
+            android:background="@color/backgroud_post" />
+
+        <RelativeLayout
+            android:id="@+id/tagBenefitPost"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_below="@+id/tagContentPost"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtBenefitTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Tiện ích: "
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <GridView
+                android:id="@+id/gridbenefitPostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/txtBenefitTitle"
+                android:columnWidth="80dp"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:visibility="visible"></GridView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tagButtonBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="Gọi điện" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:text="Đặt hẹn ngay" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

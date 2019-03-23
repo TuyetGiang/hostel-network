@@ -8,14 +8,14 @@
     tools:context=".activity.UpdateProfileActivity">
 
     <ImageView
-        android:id="@+id/userAvatar"
+        android:id="@+id/userAvatarEdit"
         android:layout_width="200dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:background="@drawable/avatar"
         android:padding="5dp"
-        android:scaleType="centerInside" />
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/txtUploadAvatar"
@@ -57,7 +57,7 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/edtPhone"
+            android:id="@+id/edtFullName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

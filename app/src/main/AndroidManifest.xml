@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PostDetailActivity"></activity>
+        <activity android:name=".activity.FilterActivity"></activity>
+        <activity android:name=".activity.AppointmentDetailActivity" />
+        <activity android:name=".activity.PostDetailActivity" />
         <activity android:name=".activity.ChangePasswordActivity" />
         <activity android:name=".activity.UpdateProfileActivity" />
         <activity android:name=".activity.HomeActivity" />

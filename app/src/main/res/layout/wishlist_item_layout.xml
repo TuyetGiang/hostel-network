@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/item_border">
+
+    <ImageView
+        android:id="@+id/imgPost"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/avatar" />
+
+
+    <TextView
+        android:id="@+id/txtPostType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/imgPost"
+        android:text="KÍ TÚC XÁ"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/txtPostTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostType"
+        android:layout_toRightOf="@id/imgPost"
+        android:text="Kí túc xá cao cấp Ngọc An"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/txtPostCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostTitle"
+        android:layout_toRightOf="@id/imgPost"
+        android:inputType="number"
+        android:text="1.500.000"
+        android:textColor="@color/colorAccent"
+
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtPostAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostCost"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_toRightOf="@id/imgPost"
+        android:text="15A Tô Ký, Phường Tân Chánh Hiệp, Quận 12"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtPostDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostAddress"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@id/imgPost"
+        android:inputType="date"
+        android:text="15/2/2019"
+        android:textSize="11sp" />
+
+    <ImageView
+        android:id="@+id/btnDeletePostOutOfWishList"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@id/txtPostCost"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:src="@drawable/trash_icon"
+        android:tint="@android:color/tertiary_text_light" />
+</RelativeLayout>

@@ -1,37 +1,60 @@
 package com.example.hostelnetwork.dto;
 
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PostDTO {
+public class PostDTO implements Serializable {
     private Integer id;
+
     private Integer typeId;
+
     private Integer userId;
+
     private String title;
+
     private String content;
+
     private String location;
-    private Double area;
-    private Integer price;
+
+    private Integer area;
+
+    private Double price;
+
     private Double deposit;
-    private LocalDate postDate;
-    private LocalDate duedate;
+
+    private String postDate;
+
+    private String dueDate;
+
     private Boolean status;
+
     private Boolean isPush;
-    private String imgName;
+
+    private String imgLinkPoster;
+
     private String typeStr;
 
-    public String getImgName() {
-        return imgName;
+    public PostDTO() {
     }
 
-    public void setImgName(String imgName) {
-        this.imgName = imgName;
-    }
-
-    public String getTypeStr() {
-        return typeStr;
-    }
-
-    public void setTypeStr(String typeStr) {
+    public PostDTO(Integer id, Integer typeId, Integer userId, String title, String content, String location, Integer area, Double price, Double deposit, String postDate, String dueDate, Boolean status, Boolean isPush, String imgLinkPoster, String typeStr) {
+        this.id = id;
+        this.typeId = typeId;
+        this.userId = userId;
+        this.title = title;
+        this.content = content;
+        this.location = location;
+        this.area = area;
+        this.price = price;
+        this.deposit = deposit;
+        this.postDate = postDate;
+        this.dueDate = dueDate;
+        this.status = status;
+        this.isPush = isPush;
+        this.imgLinkPoster = imgLinkPoster;
         this.typeStr = typeStr;
     }
 
@@ -83,19 +106,19 @@ public class PostDTO {
         this.location = location;
     }
 
-    public Double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(Double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -107,20 +130,20 @@ public class PostDTO {
         this.deposit = deposit;
     }
 
-    public LocalDate getPostDate() {
+    public String getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(LocalDate postDate) {
+    public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
 
-    public LocalDate getDuedate() {
-        return duedate;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setDuedate(LocalDate duedate) {
-        this.duedate = duedate;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public Boolean getStatus() {
@@ -137,5 +160,21 @@ public class PostDTO {
 
     public void setPush(Boolean push) {
         isPush = push;
+    }
+
+    public String getImgLinkPoster() {
+        return imgLinkPoster;
+    }
+
+    public void setImgLinkPoster(String imgLinkPoster) {
+        this.imgLinkPoster = imgLinkPoster;
+    }
+
+    public String getTypeStr() {
+        return typeStr;
+    }
+
+    public void setTypeStr(String typeStr) {
+        this.typeStr = typeStr;
     }
 }

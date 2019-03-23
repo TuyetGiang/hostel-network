@@ -34,14 +34,7 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
 
         setContentView(R.layout.activity_home);
-//        Button btnLogin = findViewById(R.id.btnTest);
-//        btnLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, Main2Activity.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         Integer fragmentId = getIntent().getIntExtra("FRAGMENT_ID", R.id.menu_newss);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigations);

@@ -7,6 +7,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import com.example.hostelnetwork.R;
+import com.example.hostelnetwork.model.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
