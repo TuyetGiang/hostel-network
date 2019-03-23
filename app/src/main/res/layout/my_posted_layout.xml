@@ -64,8 +64,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtPostCost"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
         android:layout_toRightOf="@id/imgPost"
         android:text="15A Tô Ký, Phường Tân Chánh Hiệp, Quận 12"
         android:textSize="12sp" />
@@ -76,11 +74,34 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtPostAddress"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
         android:layout_toRightOf="@id/imgPost"
         android:inputType="date"
-        android:text="15/2/2019"
+        android:text="15/02/2019"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/txtSpacePostDateAndDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostAddress"
+        android:layout_alignParentBottom="true"
+
+        android:layout_toRightOf="@id/txtPostDate"
+        android:inputType="date"
+        android:text="  |  Ngày hết hạn: "
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/txtDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPostAddress"
+        android:layout_alignParentBottom="true"
+
+        android:layout_toRightOf="@id/txtSpacePostDateAndDueDate"
+        android:inputType="date"
+        android:text="15/02/2019"
+        android:textColor="@color/heart_saved"
         android:textSize="11sp" />
 
 </RelativeLayout>

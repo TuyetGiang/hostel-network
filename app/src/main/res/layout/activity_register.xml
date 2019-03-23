@@ -12,17 +12,18 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
-        android:text="X"
-        android:textSize="24dp"
         android:clickable="true"
         android:onClick="closeRegister"
+        android:text="X"
+        android:textSize="24dp"
         android:textStyle="normal" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
 
         app:srcCompat="@drawable/home" />
 
@@ -41,13 +42,13 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Số điện thoại"
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/edtPasswordRegister"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -82,6 +83,26 @@
         android:hint="Địa chỉ"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/edtFullname"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Họ và tên"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/invalidRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/heart_saved" />
+
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="300dp"
@@ -104,5 +125,6 @@
         android:gravity="center"
         android:onClick="goToLogin"
         android:text="@string/loginStr" />
+
 
 </LinearLayout>

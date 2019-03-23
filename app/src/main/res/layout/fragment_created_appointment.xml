@@ -6,7 +6,7 @@
     android:padding="5dp"
     tools:context=".fragment.CreatedAppointmentFragment">
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listView_create_appointment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

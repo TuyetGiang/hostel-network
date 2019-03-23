@@ -2,17 +2,28 @@ package com.example.hostelnetwork.dto;
 
 import android.content.Intent;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AppointmentDTO {
+public class AppointmentDTO implements Serializable {
     private Integer id;
+
     private Integer renterId;
+
     private Integer hostId;
-    private LocalDateTime time;
-    private LocalDate createDate;
+
+    private String addressAppointment;
+
+    private String time;
+
+    private String createDate;
+
     private Integer status;
+
     private String note;
+
+    private UserDTO userInfor;
 
     public Integer getId() {
         return id;
@@ -38,19 +49,27 @@ public class AppointmentDTO {
         this.hostId = hostId;
     }
 
-    public LocalDateTime getTime() {
+    public String getAddressAppointment() {
+        return addressAppointment;
+    }
+
+    public void setAddressAppointment(String addressAppointment) {
+        this.addressAppointment = addressAppointment;
+    }
+
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public LocalDate getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -68,5 +87,13 @@ public class AppointmentDTO {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public UserDTO getUserInfor() {
+        return userInfor;
+    }
+
+    public void setUserInfor(UserDTO userInfor) {
+        this.userInfor = userInfor;
     }
 }

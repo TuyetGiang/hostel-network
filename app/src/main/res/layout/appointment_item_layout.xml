@@ -36,42 +36,42 @@
         />
 
     <TextView
-        android:id="@+id/txtAppointmentPhoneTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số điện thoại: "
-        android:layout_toRightOf="@id/imgUserAppointment"
-        android:layout_below="@id/txtAppointmentName"/>
-
-    <TextView
         android:id="@+id/txtAppointentPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtAppointmentName"
-        android:layout_toRightOf="@id/txtAppointmentPhoneTitle"
+        android:layout_toRightOf="@id/imgUserAppointment"
         android:text="0123456789"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/txtSpacePhoneAndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  |  "
+        android:layout_toRightOf="@id/txtAppointentPhone"
+        android:layout_below="@id/txtAppointmentName"
+        android:textSize="17sp"/>
 
     <TextView
         android:id="@+id/txtAppointmentTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtAppointentPhone"
-        android:layout_toRightOf="@id/imgUserAppointment"
+        android:layout_below="@id/txtAppointmentName"
+        android:layout_toRightOf="@id/txtSpacePhoneAndTime"
         android:inputType="number"
+
         android:text="15/03/2019 14:30"
         android:textColor="@color/colorAccent"
-
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtPostTitle"
+        android:id="@+id/txtAddressAppointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtAppointmentTime"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_below="@id/txtAppointentPhone"
         android:layout_toRightOf="@id/imgUserAppointment"
         android:text="Kí túc xá cao cấp Quận 12"
         android:textSize="14sp" />
@@ -87,6 +87,7 @@
         android:layout_toRightOf="@id/imgUserAppointment"
         android:inputType="date"
         android:text="Đang chờ"
-        android:textSize="14sp" />
+        android:textStyle="bold"
+        android:textSize="15sp" />
 
 </RelativeLayout>

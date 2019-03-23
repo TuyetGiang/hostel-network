@@ -9,5 +9,6 @@
     <color name="backgroud_post">#ECE9E9</color>
     <color name="background">#EFEEEE</color>
     <color name="heart_saved">#FF0000</color>
-    <color name="color_gray">#aaaaaa</color>
+    <color name="color_gray">#AAAAAA</color>
+    <color name="icon_color">#6D6D6D</color>
 </resources>

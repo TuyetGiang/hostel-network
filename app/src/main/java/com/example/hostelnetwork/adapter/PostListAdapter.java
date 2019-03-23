@@ -1,16 +1,21 @@
-package com.example.hostelnetwork;
+package com.example.hostelnetwork.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hostelnetwork.R;
 import com.example.hostelnetwork.dto.PostDTO;
+import com.example.hostelnetwork.dto.UserDTO;
+import com.example.hostelnetwork.model.WishListModel;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -18,11 +23,13 @@ import java.util.List;
 
 public class PostListAdapter extends BaseAdapter {
     private List<PostDTO> listData;
+    private List<Integer> listSavedPostId;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public PostListAdapter(List<PostDTO> listData, Context context) {
+    public PostListAdapter(List<PostDTO> listData, List<Integer> listSavedPostId, Context context) {
         this.listData = listData;
+        this.listSavedPostId = listSavedPostId;
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -60,46 +67,46 @@ public class PostListAdapter extends BaseAdapter {
         }
 
         final PostDTO postDTO = this.listData.get(position);
-        holder.typeView.setText(postDTO.getTypeStr());
+        Picasso.with(context).load(postDTO.getImgLinkPoster()).into(holder.imgPostView);
+        holder.typeView.setText(postDTO.getTypeStr().toUpperCase());
         holder.titleView.setText(postDTO.getTitle());
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         holder.priceView.setText(nf.format(postDTO.getPrice()));
         holder.locationView.setText(postDTO.getLocation());
-        if (postDTO.getStatus() != null && postDTO.getStatus()) {
+        holder.dateView.setText(postDTO.getPostDate());
+
+        Boolean isSaved = isSavedPost(postDTO.getId());
+
+        if (isSaved != null && isSaved) {
             holder.heartView.setColorFilter(convertView.getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
         } else {
             holder.heartView.setColorFilter(convertView.getResources().getColor(R.color.color_gray), PorterDuff.Mode.SRC_IN);
 
         }
 
-        String url = "https://imgur.com/7uav2Qg.jpg";
-        Picasso.with(context).load(postDTO.getImgName()).into(holder.imgPostView);
-
-        final ImageView imageView = convertView.findViewById(R.id.btnSavePostToWishList);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //call api save post to wishList
-                if (postDTO.getStatus() != null && postDTO.getStatus()) {
-                    imageView.setColorFilter(v.getResources().getColor(R.color.color_gray), PorterDuff.Mode.SRC_IN);
-                    postDTO.setStatus(false);
+        holder.heartView.setOnClickListener(v -> {
+            //call api save post to wishList
+            SharedPreferences accountPreferences = context.getSharedPreferences("ACCOUNT", Context.MODE_PRIVATE);
+            if (accountPreferences != null && accountPreferences.getString("userInfor", null) != null) {
+                Gson gson = new Gson();
+                String json = accountPreferences.getString("userInfor", "");
+                UserDTO userDTO = gson.fromJson(json, UserDTO.class);
+                if (isSaved) {
+                    holder.heartView.setColorFilter(v.getResources().getColor(R.color.color_gray), PorterDuff.Mode.SRC_IN);
+                    WishListModel wishListModel = new WishListModel();
+                    wishListModel.deletePostOutOfWishList(userDTO.getId(), postDTO.getId());
+                    Toast.makeText(context, "Đã xóa bài viết khỏi danh sách xem sau", Toast.LENGTH_LONG).show();
                 } else {
-                    imageView.setColorFilter(v.getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
-                    postDTO.setStatus(true);
+                    holder.heartView.setColorFilter(v.getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
+                    WishListModel wishListModel = new WishListModel();
+                    wishListModel.addPostToWishList(userDTO.getId(), postDTO.getId());
+                    Toast.makeText(context, "Đã lưu bài viết để xem sau", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+
         return convertView;
-    }
-
-    // Tìm ID của Image ứng với tên của ảnh (Trong thư mục mipmap).
-    public int getMipmapResIdByName(String resName) {
-        String pkgName = context.getPackageName();
-
-        // Trả về 0 nếu không tìm thấy.
-        int resID = context.getResources().getIdentifier(resName, "mipmap", pkgName);
-        Log.i("CustomListView", "Res Name: " + resName + "==> Res ID = " + resID);
-        return resID;
     }
 
     static class ViewHolder {
@@ -110,7 +117,14 @@ public class PostListAdapter extends BaseAdapter {
         TextView locationView;
         ImageView heartView;
         TextView dateView;
+    }
 
-
+    private Boolean isSavedPost(Integer postId) {
+        if (listSavedPostId != null) {
+            if (listSavedPostId.contains(postId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

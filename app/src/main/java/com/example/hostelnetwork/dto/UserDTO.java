@@ -1,8 +1,9 @@
 package com.example.hostelnetwork.dto;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 
-public class UserDTO {
+@SuppressWarnings("serial")
+public class UserDTO implements Serializable {
     private Integer id;
     private String username;
     private String password;
@@ -11,9 +12,11 @@ public class UserDTO {
     private String fullname;
     private String address;
     private Long amount;
-    private LocalDate registDate;
+    private String registDate;
     private Boolean admin;
     private Boolean isBlocked;
+    private String imgAvatar;
+
 
     public Integer getId() {
         return id;
@@ -79,11 +82,11 @@ public class UserDTO {
         this.amount = amount;
     }
 
-    public LocalDate getRegistDate() {
+    public String getRegistDate() {
         return registDate;
     }
 
-    public void setRegistDate(LocalDate registDate) {
+    public void setRegistDate(String registDate) {
         this.registDate = registDate;
     }
 
@@ -101,5 +104,13 @@ public class UserDTO {
 
     public void setBlocked(Boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public String getImgAvatar() {
+        return imgAvatar;
+    }
+
+    public void setImgAvatar(String imgAvatar) {
+        this.imgAvatar = imgAvatar;
     }
 }
