@@ -154,6 +154,7 @@ public class FilterActivity extends AppCompatActivity {
 
             intent.putExtra("FRAGMENT_ID", R.id.menu_newss);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
 
         Button btnClearFilter = findViewById(R.id.btnClearFilter);
@@ -177,7 +178,10 @@ public class FilterActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

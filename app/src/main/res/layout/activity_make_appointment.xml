@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".activity.MakeAppointmentActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="TÊN CHỦ NHÀ:   "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtHostFullNameMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroud_post" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="ĐỊA CHỈ HẸN: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtAddressMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroud_post" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="SỐ ĐIỆN THOẠI CỦA CHỦ NHÀ: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtHostPhoneMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroud_post" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="THỜI GIAN HẸN:"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/edtDayMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="Nhấn để chọn ngày giờ"
+        android:inputType="date"
+        android:requiresFadingEdge="horizontal|vertical"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="TÊN CỦA BẠN:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtRenterNameMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroud_post" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="SỐ ĐIỆN THOẠI CỦA BẠN:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtRenterPhoneMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/backgroud_post" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="GHI CHÚ CHO CHỦ NHÀ:"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edtNoteMakeAppointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="Nhập ghi chú gửi chủ nhà"
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnConfirmMakeAppointment"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/boder_button_filter"
+        android:gravity="center"
+        android:text="Xác nhận đặt hẹn"
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btnCancelMakeAppointment"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/boder_button_delete_filte"
+        android:gravity="center"
+        android:text="Hủy" />
+
+</LinearLayout>

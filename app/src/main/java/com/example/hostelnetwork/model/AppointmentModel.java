@@ -15,6 +15,8 @@ import java.util.List;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class AppointmentModel {
@@ -41,5 +43,32 @@ public class AppointmentModel {
             ex.printStackTrace();
         }
         return data;
+    }
+
+    public AppointmentDTO createNewAppoinment(AppointmentDTO dto){
+        AppointmentDTO result = null;
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(LocaleData.APPOINTMENT_CREATE_URL);
+
+            StringEntity params = new StringEntity(gson.toJson(dto),"UTF-8");
+            httpPost.setHeader("Content-Type", "application/json;charset=UTF-8");
+            httpPost.setHeader("Content-type", "application/json");
+            httpPost.setEntity(params);
+
+            HttpResponse response = httpclient.execute(httpPost);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
+            if (LocaleData.HandleErrorMessageResponse(response.getStatusLine().getStatusCode())) {
+                if (json != null) {
+                    result = gson.fromJson(json, AppointmentDTO.class);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 }

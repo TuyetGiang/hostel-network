@@ -88,6 +88,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "Đã cập nhật thông tin thành công", Toast.LENGTH_LONG).show();
         startActivity(intent);
+        overridePendingTransition(R.anim.no_change, R.anim.no_change);
+
     }
 
     private UserDTO getUserInfor() {

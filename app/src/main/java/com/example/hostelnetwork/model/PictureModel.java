@@ -3,7 +3,6 @@ package com.example.hostelnetwork.model;
 import android.os.StrictMode;
 
 import com.example.hostelnetwork.constant.LocaleData;
-import com.example.hostelnetwork.dto.PictureDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

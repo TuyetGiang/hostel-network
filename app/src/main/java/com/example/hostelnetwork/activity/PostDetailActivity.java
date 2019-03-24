@@ -9,17 +9,16 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +31,6 @@ import com.example.hostelnetwork.adapter.ImageSliderAdapter;
 import com.example.hostelnetwork.dto.BenefitDTO;
 import com.example.hostelnetwork.dto.PostDTO;
 import com.example.hostelnetwork.dto.UserDTO;
-import com.example.hostelnetwork.fragment.NewsFragment;
 import com.example.hostelnetwork.model.BenefitModel;
 import com.example.hostelnetwork.model.PictureModel;
 import com.example.hostelnetwork.model.UserModel;
@@ -41,7 +39,6 @@ import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +46,11 @@ public class PostDetailActivity extends AppCompatActivity {
 
     static final int COLOR_INACTIVE = Color.WHITE;
     static final int COLOR_ACTIVE = Color.BLUE;
-    private PostDTO postDTO = null;
+    private PostDTO postDetail = null;
     private Boolean saved = null;
-    private UserDTO userDTO = null;
+    private UserDTO currentUser = null;
     private ActionBar toolbar;
+    private UserDTO userPosted = null;
 
     @TargetApi(Build.VERSION_CODES.N)
     @Override
@@ -61,20 +59,46 @@ public class PostDetailActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorAccent)));
         toolbar.setTitle("Chi tiết phòng");
-        if (toolbar != null){
+        if (toolbar != null) {
             toolbar.setDisplayHomeAsUpEnabled(true);
             toolbar.setDisplayShowHomeEnabled(true);
         }
         setContentView(R.layout.activity_post_detail);
 
         loadUser();
-        postDTO = new Gson().fromJson(getIntent().getStringExtra("POST_DETAIL"), PostDTO.class);
-        if (postDTO != null) {
+        postDetail = new Gson().fromJson(getIntent().getStringExtra("POST_DETAIL"), PostDTO.class);
+        if (postDetail != null) {
             loadImage();
             loadDetailPost();
             loadUserPostedInfor();
             loadBenefit();
         }
+
+        Button btncallPhone = findViewById(R.id.btnCallPhonePostDetail);
+        btncallPhone.setOnClickListener(v -> {
+            if (userPosted != null && userPosted.getPhone() != null) {
+                Intent callIntent = new Intent();
+                callIntent.setAction(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + userPosted.getPhone()));
+                startActivity(callIntent);
+            }
+        });
+
+        Button btnMakeAppointment = findViewById(R.id.btnMakeApointmentPostDetail);
+        btnMakeAppointment.setOnClickListener(v -> {
+            if (currentUser == null) {
+                Intent intent = new Intent(PostDetailActivity.this, LoginActivity.class);
+                intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(PostDetailActivity.this, MakeAppointmentActivity.class);
+                intent.putExtra("SAVED_POST", saved);
+                intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+                intent.putExtra("USER_POSTED", new Gson().toJson(userPosted));
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -96,14 +120,14 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     public void savedPostDetail(View view) {
-        if (userDTO != null) {
+        if (currentUser != null) {
             TextView txtSaved = findViewById(R.id.txtStatusSavedPostDetail);
             ImageView imgHeartDetail = findViewById(R.id.imgHeartDetail);
             if (saved) {
                 saved = false;
                 imgHeartDetail.setColorFilter(getResources().getColor(R.color.color_gray), PorterDuff.Mode.SRC_IN);
                 WishListModel wishListModel = new WishListModel();
-                wishListModel.deletePostOutOfWishList(userDTO.getId(), postDTO.getId());
+                wishListModel.deletePostOutOfWishList(currentUser.getId(), postDetail.getId());
                 txtSaved.setText("Lưu tin");
                 txtSaved.setTextColor(getResources().getColor(R.color.color_gray));
                 Toast.makeText(this, "Đã xóa bài viết khỏi danh sách xem sau", Toast.LENGTH_LONG).show();
@@ -111,13 +135,13 @@ public class PostDetailActivity extends AppCompatActivity {
                 saved = true;
                 imgHeartDetail.setColorFilter(getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
                 WishListModel wishListModel = new WishListModel();
-                wishListModel.addPostToWishList(userDTO.getId(), postDTO.getId());
+                wishListModel.addPostToWishList(currentUser.getId(), postDetail.getId());
                 txtSaved.setText("Đã lưu");
                 txtSaved.setTextColor(getResources().getColor(R.color.heart_saved));
                 Toast.makeText(this, "Đã lưu bài viết để xem sau", Toast.LENGTH_LONG).show();
             }
-        }else {
-            Intent intent = new Intent(PostDetailActivity.this,LoginActivity.class);
+        } else {
+            Intent intent = new Intent(PostDetailActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
@@ -128,14 +152,14 @@ public class PostDetailActivity extends AppCompatActivity {
         if (accountPreferences != null && accountPreferences.getString("userInfor", null) != null) {
             Gson gson = new Gson();
             String json = accountPreferences.getString("userInfor", "");
-            userDTO = gson.fromJson(json, UserDTO.class);
+            currentUser = gson.fromJson(json, UserDTO.class);
         }
     }
 
     //get List image of post
     private void loadImage() {
         PictureModel pictureModel = new PictureModel();
-        List<String> listImg = pictureModel.getImgLinkOfPost(postDTO.getId());
+        List<String> listImg = pictureModel.getImgLinkOfPost(postDetail.getId());
         ImageSliderAdapter sliderAdapter = new ImageSliderAdapter(listImg);
         ViewPager imagePostSlider = findViewById(R.id.imgPostSlider);
         imagePostSlider.setAdapter(sliderAdapter);
@@ -166,7 +190,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private void loadUserPostedInfor() {
         UserModel userModel = new UserModel();
-        UserDTO userPosted = userModel.getUserById(postDTO.getUserId());
+        userPosted = userModel.getUserById(postDetail.getUserId());
 
         ImageView imgAvatar = findViewById(R.id.imgAvatarUserPostDetail);
         TextView txtUserName = findViewById(R.id.txtNameUserPostDetail);
@@ -193,18 +217,18 @@ public class PostDetailActivity extends AppCompatActivity {
         TextView txtLocation = findViewById(R.id.txtLocationPostDetail);
         TextView txtAre = findViewById(R.id.txtAreaPostDetail);
 
-        txtTypePost.setText(postDTO.getTypeStr().toUpperCase());
-        txtTitle.setText(postDTO.getTitle());
+        txtTypePost.setText(postDetail.getTypeStr().toUpperCase());
+        txtTitle.setText(postDetail.getTitle());
         NumberFormat nf = NumberFormat.getCurrencyInstance();
-        txtPrice.setText(nf.format(postDTO.getPrice()));
-        txtContent.setText(postDTO.getContent());
-        txtDeposit.setText(nf.format(Optional.ofNullable(postDTO.getDeposit()).orElse(0D)));
-        txtLocation.setText(postDTO.getLocation());
-        if (postDTO.getArea() != null) {
-            txtAre.setText(postDTO.getArea().toString() + " m2");
+        txtPrice.setText(nf.format(postDetail.getPrice()));
+        txtContent.setText(postDetail.getContent());
+        txtDeposit.setText(nf.format(Optional.ofNullable(postDetail.getDeposit()).orElse(0D)));
+        txtLocation.setText(postDetail.getLocation());
+        if (postDetail.getArea() != null) {
+            txtAre.setText(postDetail.getArea().toString() + " m2");
         }
         saved = getIntent().getBooleanExtra("SAVED_POST", false);
-        if (userDTO != null && saved) {
+        if (currentUser != null && saved) {
             txtSaved.setText("Đã lưu");
             imgHeartDetail.setColorFilter(getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
             txtSaved.setTextColor(getResources().getColor(R.color.heart_saved));
@@ -213,7 +237,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private void loadBenefit() {
         BenefitModel benefitModel = new BenefitModel();
-        List<BenefitDTO> benefitDTOList = benefitModel.getListBenefitOfPost(postDTO.getId());
+        List<BenefitDTO> benefitDTOList = benefitModel.getListBenefitOfPost(postDetail.getId());
 
         final GridView gridView = (findViewById(R.id.gridbenefitPostDetail));
         gridView.setAdapter(new BenefitGridAdapter(PostDetailActivity.this, benefitDTOList));

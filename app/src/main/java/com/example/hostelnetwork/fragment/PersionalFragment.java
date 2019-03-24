@@ -87,6 +87,7 @@ public class PersionalFragment extends Fragment implements View.OnClickListener 
             case R.id.btnUpdateProfile:
                 Intent intent = new Intent(getActivity(), UpdateProfileActivity.class);
                 startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.no_change, R.anim.no_change);
                 break;
             case R.id.btnLogout:
                 SharedPreferences preferences = getActivity().getSharedPreferences("ACCOUNT",Context.MODE_PRIVATE);

@@ -22,6 +22,9 @@ android {
         targetCompatibility = '1.8'
     }
 }
+android {
+    useLibrary 'org.apache.http.legacy'
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -3,15 +3,11 @@ package com.example.hostelnetwork.model;
 import android.os.StrictMode;
 
 import com.example.hostelnetwork.constant.LocaleData;
-import com.example.hostelnetwork.dto.PostDTO;
 import com.example.hostelnetwork.dto.UserDTO;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;

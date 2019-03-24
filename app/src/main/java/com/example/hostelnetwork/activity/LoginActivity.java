@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("FRAGMENT_ID", lastFragmentId);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.no_change, R.anim.no_change);
                 }
 
             }
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         intent.putExtra("FRAGMENT_ID", R.id.menu_newss);
         startActivity(intent);
+        overridePendingTransition(R.anim.no_change, R.anim.no_change);
     }
 
     private boolean validateLogin(EditText edtPhone, EditText edtPassword) {

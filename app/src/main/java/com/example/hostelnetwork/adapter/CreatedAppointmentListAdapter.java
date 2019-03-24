@@ -81,6 +81,8 @@ public class CreatedAppointmentListAdapter extends BaseAdapter {
                 holder.statusView.setText("Đã bị từ chối");
                 holder.statusView.setTextColor(Color.parseColor("#ff0000"));
             }
+        }else{
+            holder.statusView.setText("Đang chờ...");
         }
         return convertView;
     }
