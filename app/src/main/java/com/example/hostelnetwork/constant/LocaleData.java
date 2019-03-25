@@ -27,6 +27,7 @@ public class LocaleData {
 
     public static final String APPOINTMENT_GETALL_CREATED_URL = "https://hostel-network-api.dev1star.com/appointments?created=";
     public static final String APPOINTMENT_CREATE_URL = "https://hostel-network-api.dev1star.com/appointments";
+    public static final String APPOINTMENT_UPDATE_URL = "https://hostel-network-api.dev1star.com/appointments/";
 
     public static final String BENEFIT_GET_BY_USER_ID_URL = "https://hostel-network-api.dev1star.com/benefits?postId=";
     public static final String BENEFIT_GET_ALL_URL = "https://hostel-network-api.dev1star.com/benefits";

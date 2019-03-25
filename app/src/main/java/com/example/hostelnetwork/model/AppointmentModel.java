@@ -14,8 +14,10 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpDelete;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.client.methods.HttpPut;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
@@ -70,5 +72,48 @@ public class AppointmentModel {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    public AppointmentDTO updateStatusAppointment(Integer id, Integer status) {
+        AppointmentDTO result = null;
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPut httpPut = new HttpPut(LocaleData.APPOINTMENT_UPDATE_URL + id + "?status=" + status);
+
+            HttpResponse response = httpclient.execute(httpPut);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
+            if (LocaleData.HandleErrorMessageResponse(response.getStatusLine().getStatusCode())) {
+                if (json != null) {
+                    result = gson.fromJson(json, AppointmentDTO.class);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public Boolean deleteAppointment(Integer id) {
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpDelete httpDelete = new HttpDelete(LocaleData.APPOINTMENT_UPDATE_URL + id);
+
+            HttpResponse response = httpclient.execute(httpDelete);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
+            if (LocaleData.HandleErrorMessageResponse(response.getStatusLine().getStatusCode())) {
+                if (json != null) {
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }

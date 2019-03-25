@@ -1,5 +1,6 @@
 package com.example.hostelnetwork.activity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -36,7 +37,9 @@ public class MakeAppointmentActivity extends AppCompatActivity {
     private ActionBar toolbar;
     static EditText dateEdit;
     static Date date = new Date();
-
+    private UserDTO currentUser;
+    private UserDTO postedUser;
+    private PostDTO postDetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,17 +57,16 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         TextView txtAddress = findViewById(R.id.txtAddressMakeAppointment);
         TextView txtRenterName = findViewById(R.id.txtRenterNameMakeAppointment);
         TextView txtRenterPhone = findViewById(R.id.txtRenterPhoneMakeAppointment);
-        EditText edtNote = findViewById(R.id.edtNoteMakeAppointment);
 
 
         SharedPreferences accountPreferences = getSharedPreferences("ACCOUNT", Context.MODE_PRIVATE);
 
         Gson gson = new Gson();
         String json = accountPreferences.getString("userInfor", "");
-        UserDTO currentUser = gson.fromJson(json, UserDTO.class);
+        currentUser = gson.fromJson(json, UserDTO.class);
 
-        UserDTO postedUser = new Gson().fromJson(getIntent().getStringExtra("USER_POSTED"), UserDTO.class);
-        PostDTO postDetail = new Gson().fromJson(getIntent().getStringExtra("POST_DETAIL"), PostDTO.class);
+        postedUser = new Gson().fromJson(getIntent().getStringExtra("USER_POSTED"), UserDTO.class);
+        postDetail = new Gson().fromJson(getIntent().getStringExtra("POST_DETAIL"), PostDTO.class);
 
         txtHostName.setText(postedUser.getFullname());
         txtHostPhone.setText(postedUser.getPhone());
@@ -84,28 +86,15 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             if (dateEdit.getText().toString().trim().equals("")) {
                 Toast.makeText(MakeAppointmentActivity.this, "Không được để trống thời gian hẹn", Toast.LENGTH_LONG).show();
             } else {
-                AppointmentDTO appointmentDTO = new AppointmentDTO();
-                appointmentDTO.setRenterId(currentUser.getId());
-                appointmentDTO.setHostId(postedUser.getId());
-                appointmentDTO.setAddressAppointment(postDetail.getLocation());
-                appointmentDTO.setTime(dateEdit.getText().toString());
-                appointmentDTO.setCreateDate(DateFormat.format("dd/MM/yyyy", new Date()).toString());
-                appointmentDTO.setNote(edtNote.getText().toString());
-                appointmentDTO.setStatus(0);
-                AppointmentModel appointmentModel = new AppointmentModel();
-                AppointmentDTO result = appointmentModel.createNewAppoinment(appointmentDTO);
-                if (result != null) {
-                    Toast.makeText(MakeAppointmentActivity.this, "Tạo lịch hẹn thành công.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MakeAppointmentActivity.this, HomeActivity.class);
-                    intent.putExtra("FRAGMENT_ID", R.id.menu_appointments);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MakeAppointmentActivity.this, "Tạo lịch hẹn thất bại. Thử lại sau!", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(MakeAppointmentActivity.this, PostDetailActivity.class);
-                    intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
-                    intent.putExtra("SAVED_POST", getIntent().getBooleanExtra("SAVED_POST", false));
-                    startActivity(intent);
-                }
+                new AlertDialog.Builder(this).setMessage("Cuộc hẹn đã tạo không thể hủy bỏ. Bạn chắc chưa?")
+                        .setTitle("Xác nhận đặt hẹn")
+                        .setPositiveButton("Chắc chắn", (arg0, arg1) -> {
+                            makeAppointment();
+                        })
+                        .setNegativeButton("Hủy", (arg0, arg1) -> {
+                        })
+                        .show();
+
             }
         });
         Button btnCancel = findViewById(R.id.btnCancelMakeAppointment);
@@ -147,7 +136,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             date.setMonth(month);
             date.setDate(day);
-            date.setYear(1900 + year);
+            date.setYear(year - 1900);
         }
     }
 
@@ -170,6 +159,34 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             date.setHours(hourOfDay);
             date.setMinutes(minute);
             dateEdit.setText(DateFormat.format("dd/MM/yyyy HH:mm", date));
+        }
+    }
+
+    private void makeAppointment() {
+        EditText edtNote = findViewById(R.id.edtNoteMakeAppointment);
+
+        AppointmentDTO appointmentDTO = new AppointmentDTO();
+        appointmentDTO.setRenterId(currentUser.getId());
+        appointmentDTO.setHostId(postedUser.getId());
+        appointmentDTO.setPostId(postDetail.getId());
+        appointmentDTO.setAddressAppointment(postDetail.getLocation());
+        appointmentDTO.setTime(dateEdit.getText().toString());
+        appointmentDTO.setCreateDate(DateFormat.format("dd/MM/yyyy", new Date()).toString());
+        appointmentDTO.setNote(edtNote.getText().toString());
+        appointmentDTO.setStatus(0);
+        AppointmentModel appointmentModel = new AppointmentModel();
+        AppointmentDTO result = appointmentModel.createNewAppoinment(appointmentDTO);
+        if (result != null) {
+            Toast.makeText(MakeAppointmentActivity.this, "Tạo lịch hẹn thành công.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MakeAppointmentActivity.this, HomeActivity.class);
+            intent.putExtra("FRAGMENT_ID", R.id.menu_appointments);
+            startActivity(intent);
+        } else {
+            Toast.makeText(MakeAppointmentActivity.this, "Tạo lịch hẹn thất bại. Thử lại sau!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MakeAppointmentActivity.this, PostDetailActivity.class);
+            intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+            intent.putExtra("SAVED_POST", getIntent().getBooleanExtra("SAVED_POST", false));
+            startActivity(intent);
         }
     }
 }

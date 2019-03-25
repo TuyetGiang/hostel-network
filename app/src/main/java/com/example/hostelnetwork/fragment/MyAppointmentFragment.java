@@ -59,10 +59,10 @@ public class MyAppointmentFragment extends Fragment {
 
             listView.setOnItemClickListener((a, v, position, id) -> {
                 Object o = listView.getItemAtPosition(position);
-                AppointmentDTO postDTO = (AppointmentDTO) o;
+                AppointmentDTO appointmentDTO = (AppointmentDTO) o;
 
                 Intent intent = new Intent(getActivity(), AppointmentDetailActivity.class);
-                intent.putExtra("APPOINTMENT_DETAIL", postDTO.getId());
+                intent.putExtra("APPOINTMENT_DETAIL", gson.toJson(appointmentDTO));
                 startActivity(intent);
             });
         }
