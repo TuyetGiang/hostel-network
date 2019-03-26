@@ -223,7 +223,13 @@
                     android:layout_marginBottom="10dp"
                     android:text="Nội dung ghi chú của chủ nhà"
                     android:textColor="@color/colorBlack" />
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txtNotePostDetail"
+                    android:background="@color/backgroud_post"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"/>
                 <ImageView
                     android:id="@+id/iconAreaPostDetail"
                     android:layout_width="18dp"
@@ -231,6 +237,7 @@
                     android:layout_below="@id/txtNotePostDetail"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/area_icon"
                     android:tint="@color/icon_color" />
 
@@ -243,7 +250,8 @@
                     android:layout_marginBottom="5dp"
                     android:layout_toRightOf="@id/iconAreaPostDetail"
                     android:text="Diện tích:    "
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/txtAreaPostDetail"
@@ -253,7 +261,8 @@
                     android:layout_marginBottom="5dp"
                     android:layout_toRightOf="@+id/txtAreaTitle"
                     android:text="0 m2"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorBlack"
+                    android:layout_marginTop="10dp"/>
 
                 <ImageView
                     android:id="@+id/iconDepositPostDetail"

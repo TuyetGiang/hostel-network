@@ -1,9 +1,11 @@
 package com.example.hostelnetwork.model;
 
+import android.net.Uri;
 import android.os.StrictMode;
 
 import com.example.hostelnetwork.constant.LocaleData;
 import com.example.hostelnetwork.dto.BenefitDTO;
+import com.example.hostelnetwork.dto.PictureDTO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class BenefitModel {
@@ -63,5 +66,26 @@ public class BenefitModel {
             ex.printStackTrace();
         }
         return data;
+    }
+
+    public Boolean insertBenefit(Integer postId, Integer benefitId) {
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(LocaleData.BENEFIT_GET_BY_USER_ID_URL + postId + "&benefitId=" +benefitId);
+
+            HttpResponse response = httpclient.execute(httpPost);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
+            if (LocaleData.HandleErrorMessageResponse(response.getStatusLine().getStatusCode())) {
+                if (json != null) {
+                    return true;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 }

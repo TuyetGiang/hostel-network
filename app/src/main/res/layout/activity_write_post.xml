@@ -50,6 +50,7 @@
                 <Spinner
                     android:id="@+id/edtTypeWritePost"
                     style="@style/Widget.AppCompat.Spinner.Underlined"
+
                     android:layout_width="match_parent"
                     android:layout_height="40dp" />
             </LinearLayout>
@@ -211,25 +212,73 @@
                     android:id="@+id/edtDueDateWritePost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ems="10"
                     android:hint="Chọn ngày hết hạn tin đăng"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:requiresFadingEdge="horizontal|vertical" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tải ảnh lên:"
                     android:textColor="@color/colorAccent"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
-                <ListView
-                    android:id="@+id/uploadImgPost"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/imgUpload"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload" />
+
+                <ImageView
+                    android:id="@+id/imgUpload1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/imgUpload2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/imgUpload3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/imgUpload4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/imgUpload5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:clickable="true"
+                    android:src="@drawable/img_upload"
+                    android:visibility="invisible" />
             </LinearLayout>
 
             <TextView
@@ -255,10 +304,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:gravity="center"
                 android:orientation="horizontal">
-
-
                 <CheckBox
                     android:id="@+id/chbAcceptPayment"
                     android:layout_width="30dp"
@@ -273,6 +319,30 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:text="Bạn đồng ý với việc trả 1000 đồng cho bài đăng mỗi ngày."
+                    android:textColor="@color/heart_saved"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/chbAcceptPush"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/heart_saved" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="Đẩy tin lên đầu bảng tin với giá 1500 đồng/ngày"
                     android:textColor="@color/heart_saved"
                     android:textStyle="bold" />
             </LinearLayout>

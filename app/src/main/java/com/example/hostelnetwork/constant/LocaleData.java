@@ -36,6 +36,8 @@ public class LocaleData {
     public static final String TYPE_GET_ALL_URL = "https://hostel-network-api.dev1star.com/types";
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS";
 
+    public static final String IMGUR_API = "https://api.imgur.com/3/upload";
+
 
     public static boolean HandleErrorMessageResponse(Integer statusResponse){
         switch (statusResponse){

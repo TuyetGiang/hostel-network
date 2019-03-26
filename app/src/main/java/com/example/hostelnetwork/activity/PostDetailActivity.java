@@ -159,7 +159,7 @@ public class PostDetailActivity extends AppCompatActivity {
     //get List image of post
     private void loadImage() {
         PictureModel pictureModel = new PictureModel();
-        List<String> listImg = pictureModel.getImgLinkOfPost(postDetail.getId());
+        List<String> listImg = pictureModel.insertPicture(postDetail.getId());
         ImageSliderAdapter sliderAdapter = new ImageSliderAdapter(listImg);
         ViewPager imagePostSlider = findViewById(R.id.imgPostSlider);
         imagePostSlider.setAdapter(sliderAdapter);
