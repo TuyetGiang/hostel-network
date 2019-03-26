@@ -1,9 +1,11 @@
 package com.example.hostelnetwork.fragment;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.example.hostelnetwork.R;
 import com.example.hostelnetwork.activity.FilterActivity;
+import com.example.hostelnetwork.activity.LoginActivity;
 import com.example.hostelnetwork.activity.PostDetailActivity;
+import com.example.hostelnetwork.activity.WritePostActivity;
 import com.example.hostelnetwork.adapter.PostListAdapter;
 import com.example.hostelnetwork.dto.PostDTO;
 import com.example.hostelnetwork.dto.UserDTO;
@@ -32,8 +34,9 @@ import java.util.List;
  */
 public class NewsFragment extends Fragment {
 
-    private RequestQueue queue;
+    //    private RequestQueue queue;
     private List<Integer> listSavedPostIdOfUser = null;
+    private UserDTO currentAcount;
 
 
     public NewsFragment() {
@@ -41,13 +44,13 @@ public class NewsFragment extends Fragment {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
-
-        queue = Volley.newRequestQueue(getContext());
+//        queue = Volley.newRequestQueue(getContext());
 
         //call api getAll
         List<PostDTO> listData = getListData();
@@ -57,14 +60,15 @@ public class NewsFragment extends Fragment {
         if (accountPreferences != null && accountPreferences.getString("userInfor", null) != null) {
             Gson gson = new Gson();
             String json = accountPreferences.getString("userInfor", "");
-            UserDTO userDTO = gson.fromJson(json, UserDTO.class);
-            listSavedPostIdOfUser = wishListModel.getAllSavedPostId(userDTO.getId());
+            currentAcount = gson.fromJson(json, UserDTO.class);
+            listSavedPostIdOfUser = wishListModel.getAllSavedPostId(currentAcount.getId());
         }
 
         final ListView listView = view.findViewById(R.id.listView);
         listView.setAdapter(new PostListAdapter(listData, listSavedPostIdOfUser, getActivity()));
-
+//        listView.setSelector(R.drawable.item_state_press);
         listView.setOnItemClickListener((a, v, position, id) -> {
+//            v.setBackgroundResource(R.drawable.item_state_press);
             Object o = listView.getItemAtPosition(position);
             PostDTO postDTO = (PostDTO) o;
 
@@ -104,6 +108,17 @@ public class NewsFragment extends Fragment {
             startActivity(intent);
         });
 
+        ImageView imgWritePost = view.findViewById(R.id.imgWritePost);
+        imgWritePost.setOnClickListener(v -> {
+            if (currentAcount == null) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.putExtra("FRAGMENT_ID", R.id.menu_newss);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getActivity(), WritePostActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
 
     }

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".activity.WritePostActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="TIÊU ĐỀ:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edtTitleWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tiêu đề cần hiển thị" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="THỂ LOẠI:"
+                    android:textColor="@color/colorBlack" />
+
+                <Spinner
+                    android:id="@+id/edtTypeWritePost"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="GIÁ TIỀN:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/txtCostWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập giá tiền"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="TIỀN CỌC:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edtDepositWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập tiền cọc"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="DIỆN TÍCH:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edtAreaWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập diện tích"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="ĐỊA CHỈ:"
+                    android:textColor="@color/colorBlack" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edtNumberHouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Số nhà" />
+
+                    <EditText
+                        android:id="@+id/edtStreet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Đường" />
+
+                    <EditText
+                        android:id="@+id/edtWard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phường" />
+
+                    <EditText
+                        android:id="@+id/edtCounty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Quận" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="KHU VỰC"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<Spinner-->
+            <!--android:id="@+id/edtLocationWritePost"-->
+            <!--style="@style/Widget.AppCompat.Spinner.Underlined"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp" />-->
+
+            <!--</LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="MÔ TẢ CHI TIẾT:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edtNotesWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="NGÀY HẾT HẠN:"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edtDueDateWritePost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Chọn ngày hết hạn tin đăng"
+                    android:inputType="date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tải ảnh lên:"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"/>
+
+                <ListView
+                    android:id="@+id/uploadImgPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="TIỆN ÍCH"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold" />
+
+            <GridView
+                android:id="@+id/gridBenefitWritePost"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:columnWidth="150dp"
+                android:gravity="center"
+                android:numColumns="auto_fit"
+                android:background="@drawable/boder_button_delete_filte"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <CheckBox
+                    android:id="@+id/chbAcceptPayment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/heart_saved" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="Bạn đồng ý với việc trả 1000 đồng cho bài đăng mỗi ngày."
+                    android:textColor="@color/heart_saved"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btnCancelWritePost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/boder_button_delete_filte"
+            android:text="Hủy" />
+
+        <Button
+            android:id="@+id/btnAcceptWritePost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/boder_button_filter"
+            android:text="Đăng tin"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+</RelativeLayout>

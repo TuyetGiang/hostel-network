@@ -3,30 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
     tools:context=".fragment.NewsFragment">
+
+    <android.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/menu_news_str"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgFilterPost"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:src="@drawable/filter_icon"
+            android:tint="@color/colorPrimary" />
+    </android.widget.Toolbar>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="150px"
         android:divider="@null"
-        android:dividerHeight="3dp"
-        android:layout_marginBottom="140px"/>
+        android:dividerHeight="3dp" />
 
     <ImageView
-        android:id="@+id/imgFilterPost"
+        android:id="@+id/imgWritePost"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="70dp"
-        android:background="@drawable/filter_icon_boder"
+
+        android:background="@drawable/write_post_border"
         android:clickable="true"
-        android:src="@drawable/filter_icon_boder" />
+        android:padding="5dp"
+        android:src="@drawable/post_icon"
+        android:tint="@color/colorPrimary" />
 
 
 </RelativeLayout>

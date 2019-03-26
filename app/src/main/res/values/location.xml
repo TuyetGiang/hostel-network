@@ -24,4 +24,7 @@
         <item>Huyện Củ Chi</item>
         <item>Huyện Cần Giờ</item>
     </string-array>
+    <string-array name="q1">
+        <item></item>
+    </string-array>
 </resources>

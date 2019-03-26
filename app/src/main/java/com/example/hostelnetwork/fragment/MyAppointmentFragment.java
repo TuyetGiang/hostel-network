@@ -43,7 +43,7 @@ public class MyAppointmentFragment extends Fragment {
         SharedPreferences accountPreferences = getActivity().getSharedPreferences("ACCOUNT", Context.MODE_PRIVATE);
         if (accountPreferences == null || accountPreferences.getString("userInfor", null) == null) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
-            intent.putExtra("FRAGMENT_ID", R.id.menu_account);
+            intent.putExtra("FRAGMENT_ID", R.id.menu_appointments);
             startActivity(intent);
         } else {
             Gson gson = new Gson();

@@ -35,4 +35,5 @@
     <string name="title_activity_appointment">AppointmentActivity</string>
     <string name="title_activity_wishlist">WishlistActivity</string>
     <string name="avatar_user">avatar user</string>
+    <string name="menu_writepost_str">Đăng tin</string>
 </resources>

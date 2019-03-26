@@ -1,10 +1,6 @@
 package com.example.hostelnetwork.dto;
 
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class PostDTO implements Serializable {
     private Integer id;
@@ -31,7 +27,7 @@ public class PostDTO implements Serializable {
 
     private Boolean status;
 
-    private Boolean isPush;
+    private Boolean push;
 
     private String imgLinkPoster;
 
@@ -40,7 +36,7 @@ public class PostDTO implements Serializable {
     public PostDTO() {
     }
 
-    public PostDTO(Integer id, Integer typeId, Integer userId, String title, String content, String location, Integer area, Double price, Double deposit, String postDate, String dueDate, Boolean status, Boolean isPush, String imgLinkPoster, String typeStr) {
+    public PostDTO(Integer id, Integer typeId, Integer userId, String title, String content, String location, Integer area, Double price, Double deposit, String postDate, String dueDate, Boolean status, Boolean push, String imgLinkPoster, String typeStr) {
         this.id = id;
         this.typeId = typeId;
         this.userId = userId;
@@ -53,7 +49,7 @@ public class PostDTO implements Serializable {
         this.postDate = postDate;
         this.dueDate = dueDate;
         this.status = status;
-        this.isPush = isPush;
+        this.push = push;
         this.imgLinkPoster = imgLinkPoster;
         this.typeStr = typeStr;
     }
@@ -155,11 +151,11 @@ public class PostDTO implements Serializable {
     }
 
     public Boolean getPush() {
-        return isPush;
+        return push;
     }
 
     public void setPush(Boolean push) {
-        isPush = push;
+        this.push = push;
     }
 
     public String getImgLinkPoster() {
