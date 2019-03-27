@@ -263,13 +263,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:text="Gọi điện" />
+                android:layout_margin="3dp"
+                android:background="@color/colorAccent"
+                android:text="Gọi điện"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnAcceptAppointmentDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chấp nhận" />
+                android:layout_margin="3dp"
+                android:background="@android:color/holo_green_dark"
+                android:text="Chấp nhận"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -282,13 +290,21 @@
                 android:id="@+id/btnRejectAppointmentDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Từ chối" />
+                android:layout_margin="3dp"
+                android:background="@android:color/holo_orange_dark"
+                android:text="Từ chối"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnDeleteAppointmentDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Xóa" />
+                android:layout_margin="3dp"
+                android:background="@color/color_gray"
+                android:text="Xóa"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

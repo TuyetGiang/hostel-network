@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.hostelnetwork.R;
@@ -62,7 +61,7 @@ public class PostedFragment extends Fragment {
                 PostDTO postDTO = (PostDTO) o;
 
                 Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                intent.putExtra("POST_DETAIL", postDTO.getId());
+                intent.putExtra("POST_DETAIL", new Gson().toJson(postDTO));
                 startActivity(intent);
             });
         }

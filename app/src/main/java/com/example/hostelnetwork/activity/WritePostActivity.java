@@ -236,7 +236,7 @@ public class WritePostActivity extends AppCompatActivity {
                                 newPost.setTitle(edtTitle.getText().toString());
                                 newPost.setPrice(Double.parseDouble(edtCostWritePost.getText().toString()));
                                 newPost.setDeposit(Double.parseDouble(edtDepositWritePost.getText().toString()));
-                                newPost.setArea(Integer.parseInt(edtDepositWritePost.getText().toString()));
+                                newPost.setArea(Integer.parseInt(edtAreaWritePost.getText().toString()));
                                 newPost.setPostDate(DateFormat.format("dd/MM/yyyy", (new Date())).toString());
                                 newPost.setDueDate(edtDueDate.getText().toString());
                                 newPost.setTypeId((int) edtType.getSelectedItemId() + 1);

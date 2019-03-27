@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.example.hostelnetwork.R;
 import com.example.hostelnetwork.dto.AppointmentDTO;
-import com.example.hostelnetwork.dto.UserDTO;
-import com.example.hostelnetwork.model.UserModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -78,7 +76,7 @@ public class CreatedAppointmentListAdapter extends BaseAdapter {
                 holder.statusView.setText("Đã chấp nhận");
                 holder.statusView.setTextColor(Color.parseColor("#009944"));
             } else if (appointmentDTO.getStatus() == 2) {
-                holder.statusView.setText("Đã bị từ chối");
+                holder.statusView.setText("Đã từ chối");
                 holder.statusView.setTextColor(Color.parseColor("#ff0000"));
             }
         }else{

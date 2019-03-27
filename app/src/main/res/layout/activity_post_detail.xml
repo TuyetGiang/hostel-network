@@ -79,6 +79,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/tagSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtTitlePostDetail"
@@ -372,17 +373,86 @@
             android:id="@+id/btnCallPhonePostDetail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
             android:text="Gọi điện"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnMakeApointmentPostDetail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:background="@color/colorAccent"
             android:gravity="center"
             android:text="Đặt hẹn ngay"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tagButtonMyPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/btnPushPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            android:text="Đẩy tin"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnRepostPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="Đăng lại"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnUpdatePost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@color/color_gray"
+            android:gravity="center"
+            android:text="Chỉnh sửa"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnDeletePost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:text="Xóa"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             tools:ignore="ButtonStyle" />
     </LinearLayout>
 </RelativeLayout>

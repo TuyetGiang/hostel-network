@@ -74,30 +74,38 @@ public class PostDetailActivity extends AppCompatActivity {
             loadBenefit();
         }
 
-        Button btncallPhone = findViewById(R.id.btnCallPhonePostDetail);
-        btncallPhone.setOnClickListener(v -> {
-            if (userPosted != null && userPosted.getPhone() != null) {
-                Intent callIntent = new Intent();
-                callIntent.setAction(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + userPosted.getPhone()));
-                startActivity(callIntent);
-            }
-        });
+        if (currentUser.getId().equals(userPosted.getId())) {
+            findViewById(R.id.tagButtonMyPost).setVisibility(View.VISIBLE);
+            findViewById(R.id.tagButtonBottom).setVisibility(View.INVISIBLE);
+            findViewById(R.id.tagSave).setVisibility(View.INVISIBLE);
+        } else {
+            findViewById(R.id.tagButtonMyPost).setVisibility(View.INVISIBLE);
+            findViewById(R.id.tagButtonBottom).setVisibility(View.VISIBLE);
+            Button btncallPhone = findViewById(R.id.btnCallPhonePostDetail);
+            btncallPhone.setOnClickListener(v -> {
+                if (userPosted != null && userPosted.getPhone() != null) {
+                    Intent callIntent = new Intent();
+                    callIntent.setAction(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + userPosted.getPhone()));
+                    startActivity(callIntent);
+                }
+            });
 
-        Button btnMakeAppointment = findViewById(R.id.btnMakeApointmentPostDetail);
-        btnMakeAppointment.setOnClickListener(v -> {
-            if (currentUser == null) {
-                Intent intent = new Intent(PostDetailActivity.this, LoginActivity.class);
-                intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(PostDetailActivity.this, MakeAppointmentActivity.class);
-                intent.putExtra("SAVED_POST", saved);
-                intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
-                intent.putExtra("USER_POSTED", new Gson().toJson(userPosted));
-                startActivity(intent);
-            }
-        });
+            Button btnMakeAppointment = findViewById(R.id.btnMakeApointmentPostDetail);
+            btnMakeAppointment.setOnClickListener(v -> {
+                if (currentUser == null) {
+                    Intent intent = new Intent(PostDetailActivity.this, LoginActivity.class);
+                    intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(PostDetailActivity.this, MakeAppointmentActivity.class);
+                    intent.putExtra("SAVED_POST", saved);
+                    intent.putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+                    intent.putExtra("USER_POSTED", new Gson().toJson(userPosted));
+                    startActivity(intent);
+                }
+            });
+        }
 
     }
 
