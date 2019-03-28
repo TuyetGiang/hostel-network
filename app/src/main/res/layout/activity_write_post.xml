@@ -214,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Chọn ngày hết hạn tin đăng"
-                    android:inputType="date"
+                    android:focusable="false"
                     android:requiresFadingEdge="horizontal|vertical" />
             </LinearLayout>
 

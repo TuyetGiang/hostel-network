@@ -96,11 +96,15 @@ public class PostListAdapter extends BaseAdapter {
                     WishListModel wishListModel = new WishListModel();
                     wishListModel.deletePostOutOfWishList(userDTO.getId(), postDTO.getId());
                     Toast.makeText(context, "Đã xóa bài viết khỏi danh sách xem sau", Toast.LENGTH_LONG).show();
+                    listSavedPostId.remove(postDTO.getId());
+                    notifyDataSetChanged();
                 } else {
                     holder.heartView.setColorFilter(v.getResources().getColor(R.color.heart_saved), PorterDuff.Mode.SRC_IN);
                     WishListModel wishListModel = new WishListModel();
                     wishListModel.addPostToWishList(userDTO.getId(), postDTO.getId());
                     Toast.makeText(context, "Đã lưu bài viết để xem sau", Toast.LENGTH_LONG).show();
+                    listSavedPostId.add(postDTO.getId());
+                    notifyDataSetChanged();
                 }
             }
         });

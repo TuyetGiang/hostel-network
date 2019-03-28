@@ -6,6 +6,7 @@
     tools:context=".activity.PostDetailActivity">
 
     <ScrollView
+        android:id="@+id/scrollContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -86,7 +87,8 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/saved_layout_post_detail"
                     android:clickable="true"
-                    android:onClick="savedPostDetail">
+                    android:onClick="savedPostDetail"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/txtStatusSavedPostDetail"
@@ -109,6 +111,40 @@
                         android:layout_marginRight="10dp"
                         android:src="@drawable/heart_icon"
                         android:tint="@android:color/darker_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tagPush"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtTitlePostDetail"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/push_layout_post_detail"
+                    android:clickable="true"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:id="@+id/txtStatusPushPostDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:text="Đẩy tin"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnPushPost"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:clickable="false"
+                        android:src="@drawable/push_icon" />
                 </LinearLayout>
 
                 <TextView
@@ -357,6 +393,57 @@
                     android:stretchMode="columnWidth" />
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/tagStatusPostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tagBenefitPost"
+                android:layout_marginBottom="150px"
+                android:background="@drawable/item_border"
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Tin đăng này đã hết hạn."
+                        android:textColor="@color/heart_saved"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtDueDateRepost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:hint="Nhấn để chọn hạn để đăng lại"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:requiresFadingEdge="horizontal|vertical"/>
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnRepostPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorAccent"
+                    android:text="Đăng lại"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
 
         </RelativeLayout>
     </ScrollView>
@@ -367,7 +454,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <Button
             android:id="@+id/btnCallPhonePostDetail"
@@ -404,30 +492,30 @@
         android:orientation="horizontal"
         android:visibility="invisible">
 
-        <Button
-            android:id="@+id/btnPushPost"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_dark"
-            android:text="Đẩy tin"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            tools:ignore="ButtonStyle" />
+        <!--<Button-->
+        <!--android:id="@+id/btnPushPost"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="3dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@android:color/holo_green_dark"-->
+        <!--android:text="Đẩy tin"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:textStyle="bold"-->
+        <!--tools:ignore="ButtonStyle" />-->
 
-        <Button
-            android:id="@+id/btnRepostPost"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="Đăng lại"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            tools:ignore="ButtonStyle" />
+        <!--<Button-->
+        <!--android:id="@+id/btnRepostPost"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="3dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:gravity="center"-->
+        <!--android:text="Đăng lại"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:textStyle="bold"-->
+        <!--tools:ignore="ButtonStyle" />-->
 
         <Button
             android:id="@+id/btnUpdatePost"
@@ -450,7 +538,7 @@
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:gravity="center"
-            android:text="Xóa"
+            android:text="Xóa tin"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:ignore="ButtonStyle" />

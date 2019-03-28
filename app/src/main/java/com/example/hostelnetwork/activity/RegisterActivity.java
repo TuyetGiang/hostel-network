@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
             userDTO.setAddress(edtAddress.getText().toString());
             userDTO.setFullname(edtFullname.getText().toString());
             userDTO.setRegistDate(DateFormat.format("dd/MM/yyyy", (new Date())).toString());
+            userDTO.setAmount(0L);
 
             UserModel userModel = new UserModel();
             userDTO = userModel.createNewUser(userDTO);

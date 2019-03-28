@@ -1,6 +1,8 @@
 package com.example.hostelnetwork.activity;
 
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,12 +15,17 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,12 +40,17 @@ import com.example.hostelnetwork.dto.PostDTO;
 import com.example.hostelnetwork.dto.UserDTO;
 import com.example.hostelnetwork.model.BenefitModel;
 import com.example.hostelnetwork.model.PictureModel;
+import com.example.hostelnetwork.model.PostModel;
 import com.example.hostelnetwork.model.UserModel;
 import com.example.hostelnetwork.model.WishListModel;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +63,7 @@ public class PostDetailActivity extends AppCompatActivity {
     private UserDTO currentUser = null;
     private ActionBar toolbar;
     private UserDTO userPosted = null;
+    static EditText dueDate;
 
     @TargetApi(Build.VERSION_CODES.N)
     @Override
@@ -74,10 +87,8 @@ public class PostDetailActivity extends AppCompatActivity {
             loadBenefit();
         }
 
-        if (currentUser.getId().equals(userPosted.getId())) {
-            findViewById(R.id.tagButtonMyPost).setVisibility(View.VISIBLE);
-            findViewById(R.id.tagButtonBottom).setVisibility(View.INVISIBLE);
-            findViewById(R.id.tagSave).setVisibility(View.INVISIBLE);
+        if (currentUser != null && currentUser.getId().equals(userPosted.getId())) {
+            myPost();
         } else {
             findViewById(R.id.tagButtonMyPost).setVisibility(View.INVISIBLE);
             findViewById(R.id.tagButtonBottom).setVisibility(View.VISIBLE);
@@ -260,5 +271,165 @@ public class PostDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void refresh() {
+        finish();
+        getIntent().putExtra("POST_DETAIL", new Gson().toJson(postDetail));
+        getIntent().putExtra("SAVED_POST", saved);
+        startActivity(getIntent());
+        overridePendingTransition(R.anim.no_change, R.anim.no_change);
+    }
+
+    private void pushPost(View view) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Long pay = 0L;
+        long days = 0;
+        try {
+            days = (sdf.parse(postDetail.getDueDate()).getTime() - new Date().getTime()) / 1000L / 60L / 60L / 24L + 1;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (days > 0) {
+            if (currentUser.getAmount() == null || currentUser.getAmount() != null && currentUser.getAmount() < pay) {
+                new android.app.AlertDialog.Builder(this).setTitle("Thông báo")
+                        .setMessage("Bạn không đủ tiền để đẩy tin. Cần ít nhất " + pay + " đồng trong tài khoản. Liên hệ với Hotel.Net để nạp thêm.")
+                        .setCancelable(true)
+                        .setNeutralButton("Ok", (dialog, which) -> {
+                        }).show();
+            } else {
+                pay += days * 1500;
+                new AlertDialog.Builder(this).setTitle("Xác nhận đẩy tin")
+                        .setMessage("Đẩy tin đến ngày " + postDetail.getDueDate() + " với giá " + pay)
+                        .setPositiveButton("Đồng ý", (dialog, which) -> {
+                            PostModel postModel = new PostModel();
+                            postModel.pushPost(postDetail.getId());
+                            postDetail.setPush(true);
+                            refresh();
+                            Toast.makeText(this, "Đã đẩy tin lên đầu bảng tin", Toast.LENGTH_LONG).show();
+                        })
+                        .setNegativeButton("Hủy", ((dialog, which) -> {
+                        })).show();
+            }
+        }
+    }
+
+    private void repostPost(View v) {
+
+        EditText edtDueDateRepost = findViewById(R.id.edtDueDateRepost);
+        if (edtDueDateRepost.getText().toString().trim().equals("")) {
+            Toast.makeText(this, "Nhập hạn của bài đăng", Toast.LENGTH_LONG).show();
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Long pay = 0L;
+            long days = 0;
+            try {
+                days = (sdf.parse(edtDueDateRepost.getText().toString()).getTime() - new Date().getTime()) / 1000L / 60L / 60L / 24L + 1;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (days > 0) {
+                pay += days * 1000;
+                if (pay > 0) {
+                    if (currentUser.getAmount() == null || currentUser.getAmount() != null && currentUser.getAmount() < pay) {
+                        new android.app.AlertDialog.Builder(this).setTitle("Thông báo")
+                                .setMessage("Bạn không đủ tiền để đẩy tin. Cần ít nhất " + pay + " đồng trong tài khoản. Liên hệ với Hotel.Net để nạp thêm.")
+                                .setCancelable(true)
+                                .setNeutralButton("Ok", (dialog, which) -> {
+                                }).show();
+                    } else {
+                        new AlertDialog.Builder(this).setTitle("Xác nhận đăng lại")
+                                .setMessage("Đăng lại đến ngày " + postDetail.getDueDate() + " với giá " + pay)
+                                .setPositiveButton("Đồng ý", (dialog, which) -> {
+                                    PostModel postModel = new PostModel();
+                                    PostDTO repostDTO = new PostDTO();
+                                    repostDTO.setDueDate(edtDueDateRepost.getText().toString());
+                                    PostDTO result = postModel.repostPost(postDetail.getId(), repostDTO);
+                                    if (result != null) {
+                                        postDetail = result;
+                                    }
+                                    Toast.makeText(this, "Đã đăng lại tin thành công", Toast.LENGTH_LONG).show();
+                                    refresh();
+
+                                })
+                                .setNegativeButton("Hủy", ((dialog, which) -> {
+                                })).show();
+                    }
+                }
+
+            }
+        }
+    }
+
+    private void myPost() {
+        findViewById(R.id.tagButtonMyPost).setVisibility(View.VISIBLE);
+        findViewById(R.id.tagButtonBottom).setVisibility(View.INVISIBLE);
+        findViewById(R.id.tagSave).setVisibility(View.INVISIBLE);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            if (sdf.parse(postDetail.getDueDate()).before(new Date())) {
+                findViewById(R.id.tagStatusPostDetail).setVisibility(View.VISIBLE);
+                findViewById(R.id.tagPush).setVisibility(View.INVISIBLE);
+                dueDate = findViewById(R.id.edtDueDateRepost);
+                dueDate.setOnClickListener(this::showTruitonDatePickerDialog);
+                Button btnRepost = findViewById(R.id.btnRepostPost);
+                btnRepost.setOnClickListener(this::repostPost);
+            }else {
+                LinearLayout tagPush = findViewById(R.id.tagPush);
+                tagPush.setVisibility(View.VISIBLE);
+                if (postDetail.getPush() != null && postDetail.getPush()) {
+                    TextView txt = findViewById(R.id.txtStatusPushPostDetail);
+                    txt.setText("Tin đã đẩy");
+                } else {
+                    tagPush.setOnClickListener(this::pushPost);
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Button delete = findViewById(R.id.btnDeletePost);
+        delete.setOnClickListener(v -> {
+            new AlertDialog.Builder(this).setTitle("Xác nhận xóa")
+                    .setMessage("Bài đăng đã xóa không thể hoàn tác")
+                    .setPositiveButton("Xóa", (dialog, which) -> {
+                        PostModel postModel = new PostModel();
+                        if (postModel.deletePost(postDetail.getId())) {
+                            Toast.makeText(this, "Đã xóa bài đăng", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(PostDetailActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.slide_in_left, R.anim.no_change);
+                        } else {
+                            Toast.makeText(this, "Không thể xóa bài đăng. Thử lại", Toast.LENGTH_LONG).show();
+                        }
+                    }).setNegativeButton("Hủy", ((dialog, which) -> {
+            })).show();
+        });
+    }
+
+    public void showTruitonDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            Date getDate = new Date();
+            getDate.setDate(day);
+            getDate.setMonth(month);
+            getDate.setYear(year - 1900);
+            dueDate.setText(DateFormat.format("dd/MM/yyyy", getDate));
+        }
+    }
+
 
 }

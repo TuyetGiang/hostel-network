@@ -206,7 +206,7 @@ public class WritePostActivity extends AppCompatActivity {
             Long pay = 0L;
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             try {
-                long days = (sdf.parse(edtDueDate.getText().toString()).getTime() - new Date().getTime()) / 1000L / 60L / 60L / 24L;
+                long days = (sdf.parse(edtDueDate.getText().toString()).getTime() - new Date().getTime()) / 1000L / 60L / 60L / 24L + 1;
                 if (days > 0) {
                     pay = days * 1000;
                     if (chbAcceptPush.isChecked()) {
@@ -221,7 +221,7 @@ public class WritePostActivity extends AppCompatActivity {
 
 
             if (pay > 0) {
-                if (currentAcount.getAmount() < pay) {
+                if (currentAcount.getAmount()== null || currentAcount.getAmount() != null && currentAcount.getAmount() < pay) {
                     new AlertDialog.Builder(this).setTitle("Thông báo")
                             .setMessage("Bạn không đủ tiền để đăng bài. Cần ít nhất " + pay + " đồng trong tài khoản. Liên hệ với Hotel.Net để nạp thêm.")
                             .setCancelable(true)
